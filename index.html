@@ -882,7 +882,7 @@ function generarXLSX(){
   // Egresos
   var hEg=[['Fecha','Categoría','Descripción','Proveedor / Destinatario','Importe','Medio de Pago','N° Comprobante','Observaciones']];
   DATA.egresos.forEach(function(m){hEg.push([m.fecha,m.categoria,m.descripcion,m.proveedor||'',+m.importe,m.medio,m.comprobante||'',m.obs||'']);});
-  if(DATA.egresos.length){hEg.push(['','','','',DATA.egresos.reduce(function(s,m){return s+(+m.importe);},0),'TOTAL','','']);}
+  if(DATA.egresos.length){hEg.push(['','','','TOTAL',DATA.egresos.reduce(function(s,m){return s+(+m.importe);},0),'','','']);}
   var wsEg=XLSX.utils.aoa_to_sheet(hEg);
   wsEg['!cols']=[{wch:12},{wch:22},{wch:32},{wch:22},{wch:14},{wch:16},{wch:18},{wch:24}];
   XLSX.utils.book_append_sheet(wb,wsEg,'Egresos');
@@ -890,7 +890,7 @@ function generarXLSX(){
   // Ingresos
   var hIn=[['Fecha','Categoría','Descripción','Cliente / Origen','Importe','Medio de Cobro','N° Comprobante','Observaciones']];
   DATA.ingresos.forEach(function(m){hIn.push([m.fecha,m.categoria,m.descripcion,m.cliente||'',+m.importe,m.medio,m.comprobante||'',m.obs||'']);});
-  if(DATA.ingresos.length){hIn.push(['','','','',DATA.ingresos.reduce(function(s,m){return s+(+m.importe);},0),'TOTAL','','']);}
+  if(DATA.ingresos.length){hIn.push(['','','','TOTAL',DATA.ingresos.reduce(function(s,m){return s+(+m.importe);},0),'','','']);}
   var wsIn=XLSX.utils.aoa_to_sheet(hIn);
   wsIn['!cols']=[{wch:12},{wch:22},{wch:32},{wch:22},{wch:14},{wch:16},{wch:18},{wch:24}];
   XLSX.utils.book_append_sheet(wb,wsIn,'Ingresos');
